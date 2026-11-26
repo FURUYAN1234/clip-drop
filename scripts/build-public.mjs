@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { secureHtml, verifyBuiltSecurity } from './web-security.mjs';
 
 export const project = fileURLToPath(new URL('../', import.meta.url));
-export const publicFiles = ['style.css', 'assets/app-screen.png', 'assets/comparison.png'];
+export const publicFiles = ['style.css', 'assets/app-screen.png', 'assets/comparison.png', 'docs/CLIP-Drop-manual.pdf'];
 
 export async function buildPublic(output = join(project, 'dist')) {
   const { version } = JSON.parse(await readFile(join(project, 'package.json'), 'utf8'));

@@ -41,10 +41,17 @@ class DropWindow:
 
         body = tk.Frame(self.root, background=PAPER, padx=22, pady=17)
         body.pack(fill='both', expand=True)
-        tk.Label(body, text='CLIP Drop', font=('Segoe UI', 21, 'bold'),
+        header = tk.Frame(body, background=PAPER)
+        header.pack(fill='x')
+        name = tk.Frame(header, background=PAPER)
+        name.pack(side='left', fill='x', expand=True)
+        tk.Label(name, text='CLIP Drop', font=('Segoe UI', 21, 'bold'),
                  background=PAPER, foreground=INK, anchor='w').pack(fill='x')
-        tk.Label(body, text='習作・ベータ版', font=('Yu Gothic UI', 10, 'bold'),
+        tk.Label(name, text='習作・ベータ版', font=('Yu Gothic UI', 10, 'bold'),
                  background=PAPER, foreground=ACCENT, anchor='w').pack(fill='x')
+        tk.Button(header, text='マニュアル取得', command=self.open_manual,
+                  font=('Yu Gothic UI', 10), foreground=ACCENT, background=PAPER,
+                  activebackground=PANEL, relief='groove', padx=7, pady=2).pack(side='right')
         self.drop_area = tk.Frame(body, background=PANEL, highlightbackground=EDGE,
                                   highlightcolor=ACCENT, highlightthickness=1)
         self.drop_area.pack(fill='both', expand=True, pady=(12, 11))
@@ -159,6 +166,18 @@ class DropWindow:
                 os.startfile(self.latest.directory)
             except OSError as error:
                 messagebox.showerror('CLIP Drop', str(error), parent=self.root)
+
+    def open_manual(self):
+        if getattr(sys, 'frozen', False):
+            manual = Path(sys.executable).resolve().with_name('CLIP-Drop-manual.pdf')
+        else:
+            manual = Path(__file__).resolve().parent / 'docs' / 'CLIP-Drop-manual.pdf'
+        try:
+            os.startfile(manual)
+        except FileNotFoundError:
+            messagebox.showerror('CLIP Drop', 'マニュアルが見つかりません。配布ZIPをすべて展開してください。', parent=self.root)
+        except OSError:
+            messagebox.showerror('CLIP Drop', 'PDFを開けませんでした。WindowsでPDFを開くアプリを確認してください。', parent=self.root)
 
     def show_error(self):
         if self.latest_error:

@@ -6,6 +6,9 @@ from pathlib import Path, PurePosixPath
 from sys import base_prefix
 from zipfile import ZIP_DEFLATED, ZipFile, ZipInfo
 
+MANUAL_NAME = 'CLIP-Drop-manual.pdf'
+SAMPLE_NAMES = ('vector.clip', 'raster.clip', 'mixed.clip')
+
 
 def digest(content):
     return sha256(content).hexdigest()
@@ -41,6 +44,9 @@ def build_zip(app, archive, readme):
         raise ValueError('A PyInstaller CLIP Drop onedir output is required')
     entries.update(runtime_licenses())
     entries['README.md'] = readme.read_bytes()
+    entries[MANUAL_NAME] = (readme.parent / 'docs' / MANUAL_NAME).read_bytes()
+    for sample in SAMPLE_NAMES:
+        entries[f'samples/{sample}'] = (readme.parent / 'samples' / sample).read_bytes()
     entries['SHA256SUMS.txt'] = ''.join(
         f'{digest(content)}  {name}\n' for name, content in sorted(entries.items())
     ).encode('utf-8')
@@ -67,8 +73,12 @@ def verify_zip(archive):
         )
         if {prefix + item for item in sums} | {manifest} != set(listed):
             raise ValueError('Manifest file set differs from ZIP')
-        if not {'CLIP Drop.exe', 'README.md'}.issubset(sums):
+        required = {'CLIP Drop.exe', 'README.md', MANUAL_NAME, *(f'samples/{name}' for name in SAMPLE_NAMES)}
+        if not required.issubset(sums):
             raise ValueError('Expected application files are missing')
+        manual = package.read(prefix + MANUAL_NAME)
+        if not manual.startswith(b'%PDF-') or b'%%EOF' not in manual[-1024:]:
+            raise ValueError('Invalid manual PDF')
         for name, expected in sums.items():
             if digest(package.read(prefix + name)) != expected:
                 raise ValueError(f'SHA256 mismatch for {name}')

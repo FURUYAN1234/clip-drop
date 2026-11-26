@@ -10,8 +10,8 @@ $python = ".\.venv\Scripts\python.exe"
 & $python -m pip install --only-binary=:all: -r requirements.txt -r requirements-build.txt
 & $python test_converter.py
 & $python -m PyInstaller --noconfirm --noupx --onedir --windowed --name "CLIP Drop" --collect-data tkinterdnd2 "CLIP Drop.pyw"
-& $python package_windows.py CLIP-Drop-v0.1.0-win-x64.zip --app "dist/CLIP Drop" --readme README.md
-& $python package_windows.py CLIP-Drop-v0.1.0-win-x64.zip
+& $python package_windows.py CLIP-Drop-v0.1.1-win-x64.zip --app "dist/CLIP Drop" --readme README.md
+& $python package_windows.py CLIP-Drop-v0.1.1-win-x64.zip
 ```
 
-Extract the ZIP into a separate folder to test the included executable. The ZIP contains the runtime licenses and a SHA-256 manifest. CLIP samples copied from `samples` can be converted without changing the copies in the repository.
+Extract the ZIP into a separate folder to test the included executable. The ZIP contains the user manual, three sample projects, runtime licenses and a SHA-256 manifest. To update the PDF, run `python docs/build_manual.py` with ReportLab and the Windows BIZ UD Gothic fonts installed. CLIP samples copied from `samples` can be converted without changing the copies in the repository.

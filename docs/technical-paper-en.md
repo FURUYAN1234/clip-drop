@@ -2,6 +2,8 @@
 
 CLIP Drop v0.1.0 · Experimental beta technical paper
 
+Version 0.1.1 adds the PDF manual and includes the test projects in the Windows ZIP. The conversion measurements below were collected with the v0.1.0 setup described in this paper.
+
 ## Abstract
 
 CLIP Drop reads .clip projects from Clip Studio Paint and exports SVG paths, a layered PSD, and a composite PNG. The evaluation uses a vector drawing, its rasterized counterpart, and a mixed project with vector geometry over raster line art. All three were authored in Clip Studio Paint EX 4.1.4.

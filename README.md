@@ -2,15 +2,17 @@
 
 Drop a .clip file on Windows to extract editable SVG paths from its stored vector strokes. CLIP Drop also traces raster layers into outline paths, and saves a layered PSD and a reference PNG in the same conversion. / クリスタの原稿（.clip）をドロップすると、ベクターレイヤーに保存された線を編集できるSVGパスとして取り出せます。ラスター層の輪郭もSVGに加え、レイヤー付きPSDと照合用PNGを同時に保存します。
 
-[Watch a conversion / 実際の変換を見る](https://youtu.be/R_xONDHl3Jo) · [Download the three test projects / 検証原稿３点を入手](https://github.com/FURUYAN1234/clip-drop/releases/download/v0.1.0/CLIP-Drop-v0.1.0-samples.zip)
+[Get the PDF manual / マニュアルを取得（PDF）](https://furuyan1234.github.io/clip-drop/docs/CLIP-Drop-manual.pdf) · [Watch a conversion / 実際の変換を見る](https://youtu.be/R_xONDHl3Jo) · [Download the three test projects / 検証原稿３点を入手](https://github.com/FURUYAN1234/clip-drop/releases/download/v0.1.0/CLIP-Drop-v0.1.0-samples.zip)
 
 **Experimental beta.** This may help when you receive a .clip file on a Windows computer without Clip Studio Paint. Converter tests cover three line-art samples. / **習作・ベータ版です。** クリスタのないWindows PCで .clip を受け取ったとき、中身の確認や別アプリでの作業に使えるかもしれません。変換は線画３原稿で検証しました。
 
 ## Get started / 使い方
 
-1. Download and extract the [Windows x64 release ZIP](https://github.com/FURUYAN1234/clip-drop/releases/tag/v0.1.0). / [Windows x64用配布ZIP](https://github.com/FURUYAN1234/clip-drop/releases/tag/v0.1.0)をダウンロードして、すべて展開します。
+1. Download and extract the [Windows x64 release ZIP](https://github.com/FURUYAN1234/clip-drop/releases/tag/v0.1.1). / [Windows x64用配布ZIP](https://github.com/FURUYAN1234/clip-drop/releases/tag/v0.1.1)をダウンロードして、すべて展開します。
 2. Run **CLIP Drop.exe** and drop one or more .clip files in the window. You can also use the file picker. / **CLIP Drop.exe** を起動し、.clipを枠へドロップします。ファイル選択にも対応しています。
 3. Open the result folder next to the original. The app adds a number when the output name already exists. / 元原稿の隣にできる結果フォルダーを開きます。同名の結果がある場合は連番を付けます。
+
+The included PDF opens from **マニュアル取得** in the app. The ZIP also includes the three test projects in its samples folder. / アプリの「マニュアル取得」から同梱PDFを開けます。配布ZIPのsamplesフォルダーには検証原稿３点を収めています。
 
 The converter runs locally. It reads your source project and puts the exported files in a separate folder. / 変換はローカルで行います。原稿を読み取り、書き出しは別フォルダーに保存します。
 
