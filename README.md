@@ -84,3 +84,7 @@ The CLIP vector layout follows the documented [clipfile-rs](https://github.com/A
 | Codex Usage / Codex 残量 | [GitHub](https://github.com/FURUYAN1234/codex-usage-overlay) | [note](https://note.com/happy_duck780/n/n98e53f17d74a) |
 
 [Suite overview / アプリ・ワークフロー総合案内](https://note.com/happy_duck780/n/nbdf826604ce7)
+
+[CLIP Drop introduction / 紹介記事](https://note.com/happy_duck780/n/n8a38199a75db)
+
+[Three .clip samples / 検証用原稿３件ZIP](https://github.com/FURUYAN1234/clip-drop/releases/download/v0.1.0/CLIP-Drop-v0.1.0-samples.zip)
