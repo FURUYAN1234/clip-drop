@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="クリスタの原稿をドロップしてSVG・PSD・PNGに変換するWindowsアプリ。">
+  <meta name="description" content="クリスタなしのWindowsで、.clipのベクター線を編集用SVGへ。レイヤー付きPSDとPNGも同時に保存できる試作ツール。">
   <title>CLIP Drop | クリスタ原稿の変換</title>
   <link rel="stylesheet" href="style.css">
 </head>
@@ -13,7 +13,7 @@
       <div>
         <p class="edition">習作・ベータ版</p>
         <h1 id="title">CLIP Drop</h1>
-        <p>クリスタを持っていないWindows PCで .clip を受け取ったときに使えるかもしれない、試作の変換ツールです。編集用SVG・レイヤー付きPSD・照合用PNGを保存します。</p>
+        <p>クリスタを持っていないWindows PCで .clip を受け取ったときに使えるかもしれない、試作の変換ツールです。原稿をドロップすると、ベクターレイヤーに保存された線を編集できるSVGパスとして取り出します。レイヤー付きPSDと照合用PNGも同時に保存します。</p>
         <a class="download" href="https://github.com/FURUYAN1234/clip-drop/releases/download/v{{VERSION}}/CLIP-Drop-v{{VERSION}}-win-x64.zip">Windows版をダウンロード</a>
         <p class="version">v{{VERSION}} · Windows 64ビット</p>
       </div>
@@ -32,7 +32,7 @@
     <section aria-labelledby="test">
       <h2 id="test">混在原稿での検証</h2>
       <img src="assets/comparison.png" loading="lazy" alt="クリスタの原稿、書き出したSVG、Photoshop用のPSDを並べた検証画像">
-      <p><a href="https://github.com/FURUYAN1234/clip-drop#verification--検証">検証結果と変換の仕組み</a></p>
+      <p><a href="https://youtu.be/R_xONDHl3Jo">実際の変換を見る</a> · <a href="https://github.com/FURUYAN1234/clip-drop/releases/download/v{{VERSION}}/CLIP-Drop-v{{VERSION}}-samples.zip">検証原稿３点のZIP</a> · <a href="https://note.com/happy_duck780/n/n8a38199a75db">紹介記事と変換の仕組み</a></p>
     </section>
   </main>
   <footer><a href="https://github.com/FURUYAN1234/clip-drop">ソースコードと関連アプリ</a></footer>

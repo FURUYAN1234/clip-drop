@@ -1,6 +1,8 @@
 # CLIP Drop · Beta / 習作・ベータ版
 
-Drop a Clip Studio Paint project to export an editable SVG, a layered PSD, and a PNG on Windows. / クリスタの原稿をドロップすると、編集用SVGとPSD、照合用PNGを書き出すWindowsアプリです。
+Drop a .clip file on Windows to extract editable SVG paths from its stored vector strokes. CLIP Drop also traces raster layers into outline paths, and saves a layered PSD and a reference PNG in the same conversion. / クリスタの原稿（.clip）をドロップすると、ベクターレイヤーに保存された線を編集できるSVGパスとして取り出せます。ラスター層の輪郭もSVGに加え、レイヤー付きPSDと照合用PNGを同時に保存します。
+
+[Watch a conversion / 実際の変換を見る](https://youtu.be/R_xONDHl3Jo) · [Download the three test projects / 検証原稿３点を入手](https://github.com/FURUYAN1234/clip-drop/releases/download/v0.1.0/CLIP-Drop-v0.1.0-samples.zip)
 
 **Experimental beta.** This may help when you receive a .clip file on a Windows computer without Clip Studio Paint. Converter tests cover three line-art samples. / **習作・ベータ版です。** クリスタのないWindows PCで .clip を受け取ったとき、中身の確認や別アプリでの作業に使えるかもしれません。変換は線画３原稿で検証しました。
 
