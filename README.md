@@ -2,19 +2,33 @@
 
 Drop a .clip file on Windows to extract editable SVG paths from its stored vector strokes. CLIP Drop also traces raster layers into outline paths, and saves a layered PSD and a reference PNG in the same conversion. / クリスタの原稿（.clip）をドロップすると、ベクターレイヤーに保存された線を編集できるSVGパスとして取り出せます。ラスター層の輪郭もSVGに加え、レイヤー付きPSDと照合用PNGを同時に保存します。
 
-[Get the PDF manual / マニュアルを取得（PDF）](https://furuyan1234.github.io/clip-drop/docs/CLIP-Drop-manual.pdf) · [Watch a conversion / 実際の変換を見る](https://youtu.be/R_xONDHl3Jo) · [Download the three test projects / 検証原稿３点を入手](https://github.com/FURUYAN1234/clip-drop/releases/download/v0.1.0/CLIP-Drop-v0.1.0-samples.zip)
+<p>
+  <a href="https://github.com/FURUYAN1234/clip-drop/releases/download/v0.1.1/CLIP-Drop-v0.1.1-win-x64.zip"><img src="assets/buttons/download-windows.png" alt="Download the Windows x64 ZIP / Windows版ZIPをダウンロード" width="260"></a>
+  <a href="https://furuyan1234.github.io/clip-drop/"><img src="assets/buttons/get-demo-app.png" alt="Get the Windows demo app on the download page / 配布ページからデモアプリを入手" width="260"></a>
+  <a href="https://note.com/happy_duck780/n/n8a38199a75db"><img src="assets/buttons/read-note.png" alt="Read the note introduction / noteで紹介記事を読む" width="260"></a>
+</p>
+
+<a href="https://furuyan1234.github.io/clip-drop/docs/CLIP-Drop-manual.pdf"><img src="assets/buttons/get-manual-pdf.png" alt="Get the PDF manual / マニュアルを取得（PDF）" width="260"></a>
+
+[Watch a conversion / 実際の変換を見る](https://youtu.be/R_xONDHl3Jo) · [Download the three test projects / 検証原稿３点を入手](https://github.com/FURUYAN1234/clip-drop/releases/download/v0.1.0/CLIP-Drop-v0.1.0-samples.zip)
 
 **Experimental beta.** This may help when you receive a .clip file on a Windows computer without Clip Studio Paint. Converter tests cover three line-art samples. / **習作・ベータ版です。** クリスタのないWindows PCで .clip を受け取ったとき、中身の確認や別アプリでの作業に使えるかもしれません。変換は線画３原稿で検証しました。
 
+[v0.1.1 release / v0.1.1 公開版](https://github.com/FURUYAN1234/clip-drop/releases/tag/v0.1.1) · [Git tags / タグ一覧](https://github.com/FURUYAN1234/clip-drop/tags)
+
 ## Get started / 使い方
 
-1. Download and extract the [Windows x64 release ZIP](https://github.com/FURUYAN1234/clip-drop/releases/tag/v0.1.1). / [Windows x64用配布ZIP](https://github.com/FURUYAN1234/clip-drop/releases/tag/v0.1.1)をダウンロードして、すべて展開します。
+1. Download and extract the [Windows x64 release ZIP](https://github.com/FURUYAN1234/clip-drop/releases/download/v0.1.1/CLIP-Drop-v0.1.1-win-x64.zip). / [Windows x64用配布ZIP](https://github.com/FURUYAN1234/clip-drop/releases/download/v0.1.1/CLIP-Drop-v0.1.1-win-x64.zip)をダウンロードして、すべて展開します。
 2. Run **CLIP Drop.exe** and drop one or more .clip files in the window. You can also use the file picker. / **CLIP Drop.exe** を起動し、.clipを枠へドロップします。ファイル選択にも対応しています。
 3. Open the result folder next to the original. The app adds a number when the output name already exists. / 元原稿の隣にできる結果フォルダーを開きます。同名の結果がある場合は連番を付けます。
 
 The included PDF opens from **マニュアル取得** in the app. The ZIP also includes the three test projects in its samples folder. / アプリの「マニュアル取得」から同梱PDFを開けます。配布ZIPのsamplesフォルダーには検証原稿３点を収めています。
 
 The converter runs locally. It reads your source project and puts the exported files in a separate folder. / 変換はローカルで行います。原稿を読み取り、書き出しは別フォルダーに保存します。
+
+![CLIP Drop v0.1.0 running on Windows, showing the .clip drop area / Windowsで起動したCLIP Drop v0.1.0のドロップ画面](assets/app-screen.png)
+
+The original drop-to-convert screen. In v0.1.1, the manual button is in the upper right. / 初版のドロップ画面です。v0.1.1では右上から操作マニュアルを開けます。
 
 ## Output / 出力
 
@@ -27,6 +41,10 @@ The converter runs locally. It reads your source project and puts the exported f
 
 ## Conversion / 変換の仕組み
 
+Technical papers in Google Docs / 日英技術論文
+
+[日本語](https://docs.google.com/document/d/1eLC6hea-XPE8cK4vGVkaEVGPsWmY5HNjGVvHz6ArfVs/edit) · [English](https://docs.google.com/document/d/1RPXuJuqT8KXVtLmCRAsfeOj8eGOYv85a47nrpN44DEM/edit)
+
 A cubic segment uses start and end positions $P_0,P_1$ and control points $C_0,C_1$. Stored cubic controls are used when available. For Clip Studio spline records the tangents are approximated from neighboring positions. / ３次ベジェ区間は端点 $P_0,P_1$ と制御点 $C_0,C_1$ で表します。３次ベジェレコードにある制御点はその座標を使い、クリスタのスプラインでは前後の点から接線を近似します。
 
 $$
@@ -38,6 +56,8 @@ For a stroke with a stored radius $r$ and per-point width factors $w_i$, the pro
 For raster layers whose alpha spans 0–255, tracing uses the binary silhouette $M(x,y)=\mathbf{1}[\alpha(x,y)\ge128]$. VTracer fits closed vector paths to the pixel boundaries and color regions. / 透明度が0〜255のラスター層では $M(x,y)=\mathbf{1}[\alpha(x,y)\ge128]$ の輪郭を使います。VTracerでピクセルの境界と色の領域を閉じたパスに近似します。
 
 ## Verification / 検証
+
+![The vector and raster source images, SVG renders, and PSD outputs / ベクター・ラスターそれぞれの元原稿、SVG描画、PSD書き出しの比較](assets/comparison.png)
 
 These are results for three 1,600 × 1,200 CLIP files authored in CLIP STUDIO PAINT EX 4.1.4. The pair has the same artwork. The mixed file adds vector shapes over the raster drawing. / クリスタEX 4.1.4で作った1,600 × 1,200原稿３件の結果です。ベクター版とラスター版は同じ絵で、混在版にはベクターの図形を追加しました。
 
@@ -88,7 +108,5 @@ The CLIP vector layout follows the documented [clipfile-rs](https://github.com/A
 | Codex Usage / Codex 残量 | [GitHub](https://github.com/FURUYAN1234/codex-usage-overlay) | [note](https://note.com/happy_duck780/n/n98e53f17d74a) |
 
 [Suite overview / アプリ・ワークフロー総合案内](https://note.com/happy_duck780/n/nbdf826604ce7)
-
-[CLIP Drop introduction / 紹介記事](https://note.com/happy_duck780/n/n8a38199a75db)
 
 [Three .clip samples / 検証用原稿３件ZIP](https://github.com/FURUYAN1234/clip-drop/releases/download/v0.1.0/CLIP-Drop-v0.1.0-samples.zip)
